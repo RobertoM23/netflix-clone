@@ -49,5 +49,11 @@ html, body {
 
 main {
   flex-grow: 1;
+  background-color: black;
+  color: white;
+}
+
+main h4{
+  color:white;
 }
 
