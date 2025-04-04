@@ -4,9 +4,9 @@ import Gallery from './Gallery';
 function Home() {
   return (
     <div className="mt-3">
-      <Gallery title="Il Signore degli Anelli e Lo Hobbit" query="lord of the rings hobbit" />
+      <Gallery title="The Lord of the Rings" query="lord of the rings" />
       <Gallery title="Star Wars Saga" query="Star Wars" />
-      <Gallery title="Harry Potter" query="Harry Potter" />
+      <Gallery title="Harry Potter Saga" query="Harry Potter" />
     </div>
   );
 }

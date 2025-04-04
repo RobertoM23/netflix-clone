@@ -1,0 +1,9 @@
+.gallery-scroll {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .gallery-scroll > div {
+    scroll-snap-align: start;
+  }
+  

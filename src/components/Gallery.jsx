@@ -1,44 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import "../assets/gallery.css";
 
-function Gallery({ title, query }) {
+const Gallery = ({ saga }) => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch(`https://www.omdbapi.com/?apikey=1fbc15cc&s=${query}`);
-        const data = await response.json();
-        if (data.Response === 'True') {
-          setMovies(data.Search);
-        } else {
-          setError(data.Error);
-        }
-      } catch (err) {
-        setError('Errore nella fetch');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMovies();
-  }, [query]);
-
-  if (loading) return <p className="text-white px-4">Loading "{title}"...</p>;
-  if (error) return <p className="text-danger px-4">{error}</p>;
+    fetch(`https://www.omdbapi.com/?apikey=1fbc15cc&s=${encodeURIComponent(saga)}`)
+      .then(res => res.json())
+      .then(data => setMovies(data.Search || []))
+      .catch(err => console.error(err));
+  }, [saga]);
 
   return (
-    <div className="container mt-4">
-      <h4 className="fw-bold mb-3">{title}</h4>
-      <div className="row g-3">
-        {movies.map((movie) => (
-          <div key={movie.imdbID} className="col-6 col-md-4 col-lg-2">
-            <img src={movie.Poster} alt={movie.Title} className="img-fluid rounded" />
+    <div className="gallery-wrapper container mt-4">
+      <h4 className="fw-bold mb-3">{saga}</h4>
+      <div className="gallery-scroll d-flex overflow-auto">
+        {movies.map(movie => (
+          <div className="me-2 flex-shrink-0" style={{ width: "150px" }} key={movie.imdbID}>
+            <img
+              src={movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/300x445?text=No+Image"}
+              alt={movie.Title}
+              className="img-fluid rounded"
+            />
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default Gallery;

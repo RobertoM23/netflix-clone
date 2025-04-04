@@ -1,32 +1,20 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar'
-import Footer from './Footer';
-import Home from './Home';
-import Profile from './Profile';
-import Settings from './Settings';
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Gallery from "./components/Gallery";
 
-function App() {
-  const [activePage, setActivePage] = useState('home');
-
-  const renderPage = () => {
-    switch (activePage) {
-      case 'profile':
-        return <Profile />;
-      case 'settings':
-        return <Settings />;
-      case 'home':
-      default:
-        return <Home />;
-    }
-  };
-
+export default function App() {
   return (
-    <div>
-      <Navbar setActivePage={setActivePage} />
-      {renderPage()}
+    <>
+      <Navbar />
+      <Gallery saga="The Lord of the Rings" />
+      <Gallery saga="Star Wars" />
+      <Gallery saga="Harry Potter" />
       <Footer />
-    </div>
+    </>
   );
 }
 
-export default App;

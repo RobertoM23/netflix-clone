@@ -1,0 +1,21 @@
+.navbar .btn-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+  }
+  
+  .navbar .btn-link:hover {
+    text-decoration: underline;
+    color: #e50914;
+  }
+  
+  .navbar-brand img {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .navbar-brand img:hover {
+    transform: scale(1.05);
+  }
