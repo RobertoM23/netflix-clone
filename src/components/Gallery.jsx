@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "../assets/gallery.css";
 
 const Gallery = ({ saga }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -35,6 +38,8 @@ const Gallery = ({ saga }) => {
                 src={movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/300x445?text=No+Image"}
                 alt={movie.Title}
                 className="img-fluid rounded"
+                onClick={() => navigate(`/movie-details/${movie.imdbID}`)}
+  style={{ cursor: "pointer" }}
               />
             </div>
           ))}
